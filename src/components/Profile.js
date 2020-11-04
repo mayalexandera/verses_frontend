@@ -7,8 +7,12 @@ import Favorites from "./Favorites";
 class Profile extends React.Component {
 
   componentDidMount = () => {
-    this.props.fetchUser()
-    this.props.fetchUserPlan()
+    this.validateUser()
+    return this.props.current_user ? this.props.fetchUserPlan() : null
+  }
+  
+  validateUser = () => {
+     return this.props.token ? this.props.fetchUser() : null;
   }
 
   renderUser = () => {

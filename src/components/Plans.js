@@ -13,7 +13,12 @@ class Plans extends React.Component {
       <div>loading</div>
     ) : (
       this.props.plans.map((plan) => {
-        return <PlanCard key={plan.id} current_plan_membership={this.props.current_plan_membership} plan={plan} />;
+        return (
+          <PlanCard
+            current_plan_membership={this.props.current_plan_membership}
+            plan={plan}
+          />
+        );
       })
     );
   };
@@ -26,8 +31,8 @@ class Plans extends React.Component {
           <div>
             <div className='plan-message'>
               <div className='spacer-20' />
-              {this.props.message.split(". ").map((line, index) => {
-                return <p key={index}>{line}</p>;
+              {this.props.message.split(". ").map((line) => {
+                return <p>{line}</p>;
               })}
             </div>
             <div id='plan-button'>
@@ -37,7 +42,10 @@ class Plans extends React.Component {
               >
                 Yes
               </button>
-              <button id='plan-route-button' onClick={() => this.props.fetchUserPlan()}>
+              <button
+                id='plan-route-button'
+                onClick={() => this.props.fetchUserPlan()}
+              >
                 No
               </button>
             </div>
@@ -51,12 +59,12 @@ class Plans extends React.Component {
             Become a member to access a forever-evolving closet of
             identity-affirming designer clothing, accessories, and more.
           </p>
-          <hr  />
+          <hr id='plan-hr' />
           <em>No commitments. Pause or cancel at any time.</em>
         </div>
         <div className=' plan-box'>
-          <div key={1} >{result}</div>
-          {() => this.renderPlans()}
+          <div>{result}</div>
+          <div>{() => this.renderPlans()}</div>
         </div>
       </div>
     );

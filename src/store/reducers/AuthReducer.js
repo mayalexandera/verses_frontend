@@ -15,6 +15,9 @@ const authStart = (state) => {
 };
 
 const authSuccess = (state, action) => {
+  console.log(action)
+  localStorage.setItem("token", action.user.session_token);
+  localStorage.setItem("userId", action.user.id);
   return updateObject(state, {
     token: action.user.session_token,
     userId: action.user.id,
@@ -22,6 +25,7 @@ const authSuccess = (state, action) => {
     loading: false,
     error: null
   });
+  
 };
 
 const fetchUserFail = (state, action) => {

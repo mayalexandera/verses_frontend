@@ -7,7 +7,9 @@ class Layout extends React.Component {
     this.props.initBrands();
     this.props.initProducts();
     this.props.initFetchPlans();
-    this.props.fetchUser()
+
+
+   return this.props.current_user ? this.props.fetchUser() : null
   }
 
   render() {

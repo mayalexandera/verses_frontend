@@ -1,25 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
 import * as actions from "../store/actions/index";
 
 const PlanCard = (props) => {
-  const buttonRenderer = () => {
-    return props.current_user ? (
-      <button
-        plan={props.plan.id}
-        id={renderId()}
-        value='button'
-        onClick={() => props.initPlanMembership(props.plan.id)}
-      >
-        {renderText()}
-      </button>
-    ) : (
-      <NavLink id={renderId()} value='button' to='/login'>
-        {" "}
-        {renderText()}
-      </NavLink>
-    );
+  const clickHandler = (e) => {
+    e.preventDefault();
+    props.initPlanMembership(props.plan.id);
   };
 
   const renderText = () => {
@@ -48,9 +34,9 @@ const PlanCard = (props) => {
         <hr id='order-hr' />
         <div className='plan-card-features'>
           <ul className='plan-bullet-points'>
-            {props.plan.features.split(",").map((feature, index) => {
+            {props.plan.features.split(",").map((feature) => {
               return (
-                <li key={index}>
+                <li>
                   <ion-icon name='checkmark'></ion-icon>
                   <span>{feature}</span>
                 </li>
@@ -58,7 +44,16 @@ const PlanCard = (props) => {
             })}
           </ul>
         </div>
-        <div id='plan-button'>{buttonRenderer()}</div>
+        <div id='plan-button'>
+          <button
+            plan={props.plan.id}
+            id={renderId()}
+            value='button'
+            onClick={(e) => clickHandler(e)}
+          >
+            {renderText()}
+          </button>
+        </div>
         <div className='plan-price'>
           <span>{props.plan.price_string}</span> <p>/month</p>
         </div>

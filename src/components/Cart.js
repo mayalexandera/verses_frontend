@@ -6,7 +6,8 @@ import CartItem from "./CartItem";
 class Cart extends React.Component {
   componentDidMount() {
     this.props.initCart();
-    this.props.fetchUserPlan();
+    console.log(this.props.current_user)
+    return this.props.token ? this.props.fetchUserPlan() : null
   }
 
   clickHandler = (e) => {
@@ -19,7 +20,7 @@ class Cart extends React.Component {
   authorized = () => {
     !this.props.current_user.plan_membership_id
       ? this.props.history.push("/plans")
-      : this.props.initOrder();
+      : this.props.initOrder(this.props.current_user.plan_membership_id);
   };
 
   findProduct = (item_product_id) => {
@@ -172,6 +173,7 @@ const mapStateToProps = (state) => {
   return {
     current_user: state.auth.current_user,
     current_plan: state.plan.current_plan,
+    token: state.auth.token,
     cart_total: state.cart.cart_total,
     cart_items: state.cart.cart_items,
     message: state.cart.message,
@@ -183,7 +185,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     initCart: () => dispatch(actions.initCart()),
-    initOrder: () => dispatch(actions.initOrder()),
+    initOrder: (plan_membership_id) => dispatch(actions.initOrder(plan_membership_id)),
     fetchUserPlan: () => dispatch(actions.fetchUserPlan()),
   };
 };

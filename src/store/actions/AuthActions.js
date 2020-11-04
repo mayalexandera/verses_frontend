@@ -8,9 +8,10 @@ export const authStart = () => {
 };
 
 export const authSuccess = (user) => {
+  console.log(user)
   return {
     type: actionTypes.AUTH_SUCCESS,
-    user: user.user
+    user: user
   };
 };
 
@@ -44,9 +45,7 @@ export const auth = (email, password, name, isSignup) =>
     await api
       .post(path, authData)
       .then((response) => {
-          dispatch(authSuccess(response.data))
-          localStorage.setItem("token", response.data.user.session_token);
-          localStorage.setItem("userId", response.data.user.id);
+          dispatch(authSuccess(response.data.user))
         }
       )
   };
@@ -59,25 +58,25 @@ export const fetchUser = () => async (dispatch, getState) => {
   await api
     .get(`/users/${user}`)
     .then((response) => {
-      dispatch(fetchUserSuccess(response.data))})
+      dispatch(authSuccess(response.data.user))})
     .catch((err) => {
-      dispatch(fetchUserFail(err));
+      dispatch(authFail(err));
     })
 };
 
-export const fetchUserFail = (error) => {
-  return {
-    type: actionTypes.FETCH_USER_FAIL,
-    error: error,
-  };
-};
+// export const fetchUserFail = (error) => {
+//   return {
+//     type: actionTypes.FETCH_USER_FAIL,
+//     error: error,
+//   };
+// };
 
-export const fetchUserSuccess = (response) => {
-  return {
-    type: actionTypes.FETCH_USER_SUCCESS,
-    user: response.user
-  };
-};
+// export const fetchUserSuccess = (response) => {
+//   return {
+//     type: actionTypes.FETCH_USER_SUCCESS,
+//     user: response.user
+//   };
+// };
 
 export const setAuthRedirectPath = (path) => {
   return {

@@ -60,5 +60,6 @@ export {
   fetchPlansStart,
   fetchPlansFail,
   initFetchPlans,
+  updatePlanMembership,
   fetchUserPlan
 } from './PlansActions'

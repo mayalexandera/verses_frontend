@@ -50,6 +50,7 @@ export const fetchUserPlan = () => async (dispatch, getState) => {
   await api
     .get(`users/${user}/plan_membership`)
     .then((response) => {
+      console.log(response)
       dispatch(userPlanSuccess(response.data));
     })
     .catch((err) => {
@@ -61,11 +62,26 @@ export const initPlanMembership = (plan_id) => async (dispatch, getState) => {
   let user = getState().auth.userId;
   dispatch(userPlanStart());
   const planData = {
-    member_id: user,
     plan_id: plan_id,
   };
   await api
-    .post(`/users/${user}/plan_membership`, planData)
+    .post(`/users/${user}/plan_membership`,planData)
+    .then((response) => {
+      dispatch(userPlanSuccess(response.data));
+    })
+    .catch((err) => {
+      dispatch(userPlanFail(err.message));
+    });
+};
+
+export const updatePlanMembership = (plan_id) => async (dispatch, getState) => {
+  let user = getState().auth.userId;
+  dispatch(userPlanStart());
+  const planData = {
+    plan_id: plan_id
+  };
+  await api
+    .patch(`/users/${user}/plan_membership`, planData)
     .then((response) => {
       dispatch(userPlanSuccess(response.data));
     })
@@ -75,6 +91,7 @@ export const initPlanMembership = (plan_id) => async (dispatch, getState) => {
 };
 
 export const userPlanSuccess = (response) => {
+  console.log(response)
   return {
     type: actionTypes.USER_PLAN_SUCCESS,
     message: response.message,
