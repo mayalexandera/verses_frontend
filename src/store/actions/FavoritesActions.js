@@ -7,6 +7,7 @@ export const initFavorites = () => async (dispatch, getState) => {
   await api
     .get(`/users/${user}/favorites`)
     .then((resp) => {
+      console.log(resp)
       dispatch(setFavorites(resp.data));
     })
     .catch((error) => {

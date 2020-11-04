@@ -34,9 +34,9 @@ return (props.current_plan_membership === null ||
         <hr id='order-hr' />
         <div className='plan-card-features'>
           <ul className='plan-bullet-points'>
-            {props.plan.features.split(",").map((feature) => {
+            {props.plan.features.split(",").map((feature, index) => {
               return (
-                <li>
+                <li key={index}>
                   <ion-icon name='checkmark'></ion-icon>
                   <span>{feature}</span>
                 </li>

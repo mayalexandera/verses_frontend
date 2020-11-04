@@ -11,7 +11,7 @@ const ProductIndex = (props) => {
   };
 
   const renderList = () => {
-    let list = props.products.filter(prod => prod.product_type !== "Accessory" || prod.product_type !=="Underwear" )
+    let list = props.products.filter(prod => prod.product_type !== "Accessory" && prod.product_type !=="Underwear" )
     return list.map((prod) => {
       return (
         <ProductCard brand={findBrand(prod)} key={prod.id} product={prod} />
@@ -31,7 +31,7 @@ const ProductIndex = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.product.select.filter(prod => prod.product_type !== "Accessory"),
+    products: state.product.select,
     brands: state.brand.select,
     error: state.product.error,
   };

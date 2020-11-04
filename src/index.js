@@ -1,5 +1,4 @@
 import React from 'react';
-import {enableMapSet} from 'immer'
 import thunk from 'redux-thunk'
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom'
@@ -13,8 +12,6 @@ import "./resources/css/queries.css";
 import "./resources/css/grid.css";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-enableMapSet()
 
 const middleware =
   process.env.NODE_ENV !== "production"

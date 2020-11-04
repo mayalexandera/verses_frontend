@@ -640,6 +640,7 @@ button {
   font-size: 110%;
   margin: auto;
   text-align: center;
+  padding-bottom: 50px;
   width: 60%;
 }
 

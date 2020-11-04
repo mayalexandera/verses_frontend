@@ -176,7 +176,6 @@ const mapStateToProps = (state) => {
     cart_items: state.cart.cart_items,
     message: state.cart.message,
     products: state.product.select,
-    accessories: state.product.accessories,
     brands: state.brand.select,
   };
 };

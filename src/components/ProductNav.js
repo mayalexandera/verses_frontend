@@ -3,7 +3,7 @@ import * as actions from "../store/actions/index";
 import { connect } from "react-redux";
 
 const categories = [
-  "Underwear",
+  // "Underwear",
   "Pant",
   "Coverall",
   "Jacket",
@@ -121,7 +121,7 @@ class ProductNav extends React.Component {
 const mapStateToProps = (state) => {
   return {
     products: state.product.select,
-    brands: state.brand.select
+    brands: state.brand.select.filter(brand => brand.name !== "Tomboy X")
   };
 };
 

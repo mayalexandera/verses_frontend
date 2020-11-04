@@ -11,8 +11,8 @@ const Brands = (props) => {
       <div className='spacer' />
       <div className='brands-title'>Participating Companies</div>
       <div className='spacer' />
-      {props.brands.map((brand) => {
-        return <BrandCard brand={brand} />;
+      {props.brands.map((brand, index) => {
+        return <BrandCard key={index} brand={brand} />;
       })}
       <div className='spacer' />
     </div>

@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import ProductCard from "./ProductCard";
 
-
 const Accessories = (props) => {
 
     const findBrand = (product) => {
