@@ -5,11 +5,13 @@ import OrderItem from "./OrderItem";
 import ProfileHeader from "./ProfileHeader";
 class OrderContainer extends React.Component {
   componentDidMount() {
-    this.props.fetchOrders();
+    this.props.initFetchOrders();
   }
 
   renderOrders = () => {
+    console.log(this.props)
     if (this.props.orders !== undefined && this.props.orders !== undefined) {
+      console.log(this.props)
       return this.props.orders.map((order) => {
         return order.order_items !== undefined
           ? order.order_items.map((item) => {
@@ -71,7 +73,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchOrders: () => dispatch(actions.fetchOrders()),
+    initFetchOrders: () => dispatch(actions.initFetchOrders()),
   };
 };
 

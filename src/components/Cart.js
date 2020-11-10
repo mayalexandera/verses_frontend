@@ -6,8 +6,11 @@ import CartItem from "./CartItem";
 class Cart extends React.Component {
   componentDidMount() {
     this.props.initCart();
-    console.log(this.props.current_user)
-    return this.props.token ? this.props.fetchUserPlan() : null
+    return this.props.token ? this.loadUser() : null
+  }
+
+  loadUser = () => {
+    this.props.fetchUser().then(this.props.fetchUserPlan())
   }
 
   clickHandler = (e) => {
@@ -185,8 +188,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     initCart: () => dispatch(actions.initCart()),
-    initOrder: (plan_membership_id) => dispatch(actions.initOrder(plan_membership_id)),
+    initOrder: (plan_membership_id) =>
+      dispatch(actions.initOrder(plan_membership_id)),
     fetchUserPlan: () => dispatch(actions.fetchUserPlan()),
+    fetchUser: () => dispatch(actions.fetchUser()),
   };
 };
 

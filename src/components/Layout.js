@@ -9,7 +9,10 @@ class Layout extends React.Component {
     this.props.initFetchPlans();
 
 
-   return this.props.current_user ? this.props.fetchUser() : null
+   if(this.props.token) {
+this.props.fetchUser() 
+this.props.fetchOrders()
+   } 
   }
 
   render() {
@@ -32,6 +35,7 @@ const mapDispatchToProps = (dispatch) => {
     initProducts: () => dispatch(actions.initProducts()),
     initBrands: () => dispatch(actions.initBrands()),
     initFetchPlans: () => dispatch(actions.initFetchPlans()),
+    initFetchOrders: () => dispatch(actions.initFetchOrders()),
     fetchUser: () => dispatch(actions.fetchUser())
   };
 };

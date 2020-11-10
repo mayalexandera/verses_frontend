@@ -21,6 +21,7 @@ export const REFRESH_CART = "REFRESH_CART"
 export const SET_CART = "SET_CART"
 
 export const INIT_ORDER = "INIT_ORDER";
+export const INIT_FETCH_ORDERS = "INIT_FETCH_ORDERS";
 export const START_ORDER= "START_ORDER";
 export const DELETE_ORDER = "DELETE_ORDER";
 export const ORDER_FAILED= "ORDER_FAILED";

@@ -22,7 +22,7 @@ const OrderItem = (props) => {
               {"Delivered"}
               <p><strong>{product_item[0].name}</strong></p>
               <p>
-                <span>Ordered:</span> {props.order.ordered_date}
+                <span>Ordered:</span> {props.order.ordered_date_string}
               </p>
               <p>
                 <span>Order</span>#{props.order.number}

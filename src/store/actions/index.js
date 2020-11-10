@@ -22,10 +22,10 @@ export {
 export {
   initOrder,
   startOrder,
+  initFetchOrders,
   orderFailed,
   deleteOrder, 
   orderSuccess,
-  fetchOrders
 } from "./OrderActions";
 export {
   deleteFavorite,

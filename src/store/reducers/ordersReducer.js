@@ -24,6 +24,7 @@ const orderSuccess = (state, action) => {
 };
 
 const fetchOrderSuccess = (state, action) => {
+  console.log(state.order.orders, action)
   if (action.payload.length < 1 || action.payload === state.orders) {
     return updateObject(state, { orders: [] });
   } else if (action.payload.length === 1) {
